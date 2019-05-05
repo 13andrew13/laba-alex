@@ -1,8 +1,17 @@
 package com.alex.laba.data;
 
-public class User {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Table(name = "users")
+@Entity
+public class User implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "user_name")
     private String userName;
+    @Column(name = "password")
     private String password;
 
     public Long getId() {

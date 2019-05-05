@@ -1,6 +1,5 @@
 package com.alex.laba.service;
 
-import com.alex.laba.dao.UserDAO;
 import org.junit.Test;
 
 import static org.mockito.Matchers.any;

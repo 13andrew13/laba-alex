@@ -1,11 +1,14 @@
 package com.alex.laba.service;
 
-import com.alex.laba.dao.OrderDAO;
+import com.alex.laba.dao.hibernate.OrderDAO;
 import com.alex.laba.data.Order;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-
+@Service
+@Transactional
 public class OrderService {
     private final OrderDAO dao;
 

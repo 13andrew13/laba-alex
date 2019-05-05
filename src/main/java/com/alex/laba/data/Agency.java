@@ -1,7 +1,15 @@
 package com.alex.laba.data;
 
-public class Agency {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "agencies")
+public class Agency implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "agency_name")
     private String agencyName;
 
     public Long getId() {
@@ -19,9 +27,10 @@ public class Agency {
     public void setAgencyName(String agencyName) {
         this.agencyName = agencyName;
     }
+
     public static final String DB_NAME = "agencies";
 
-    public static class Columns{
+    public static class Columns {
         public static final String ID = "id";
         public static final String NAME = "agency_name";
     }
