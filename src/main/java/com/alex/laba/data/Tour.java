@@ -1,10 +1,21 @@
 package com.alex.laba.data;
 
-public class Tour {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "tours")
+public class Tour implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "tour_agency")
     private Long agency;
+    @Column(name = "tour_name")
     private String name;
+    @Column(name = "tour_description")
     private String description;
+    @Column(name = "tour_cost")
     private Long cost;
 
     public Long getId() {

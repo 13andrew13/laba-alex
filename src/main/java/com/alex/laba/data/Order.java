@@ -1,10 +1,21 @@
 package com.alex.laba.data;
 
-public class Order {
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "orders")
+public class Order implements Serializable {
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "user_id")
     private Long userId;
+    @Column(name = "tour_id")
     private Long tourId;
+    @Column(name = "agent_id")
     private Long agentId;
+    @Column(name = "cost")
     private Long cost;
 
     public Long getId() {
@@ -46,6 +57,7 @@ public class Order {
     public void setCost(Long cost) {
         this.cost = cost;
     }
+
     public static final String DB_NAME = "orders";
 
     public static class Columns {

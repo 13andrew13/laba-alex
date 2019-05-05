@@ -10,9 +10,10 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../../../resources/WEB-INF/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
           integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -21,21 +22,21 @@
         <thead>
         <tr>
             <td>ID</td>
-            <td>User Id</td>
-            <td>Agent Id</td>
-            <td>Tour id</td>
-            <td>Cost</td>
+            <td>Tour Name</td>
+            <td>Tour description</td>
+            <td>Tour agency id</td>
+            <td>Tour cost</td>
         </tr>
         </thead>
         <tbody class="pure-table-odd">
         <%--@elvariable id="tours" type="java.util.List"--%>
-        <c:forEach var="order" items="${orders}">
+        <c:forEach var="tour" items="${tours}">
             <tr style="border: black">
-                <td>${order.getId()}</td>
-                <td>${order.getUserId()}</td>
-                <td>${order.getAgentId()}</td>
-                <td>${order.getTourId()}</td>
-                <td>${order.getCost()}</td>
+                <td>${tour.getId()}</td>
+                <td>${tour.getName()}</td>
+                <td>${tour.getDescription()}</td>
+                <td>${tour.getAgency()}</td>
+                <td>${tour.getCost()}</td>
 
             </tr>
         </c:forEach>
@@ -43,26 +44,25 @@
     </table>
 </div>
 <div class="pure-u-2-5">
-    <form class="pure-form pure-form-stacked pure-u-2-5" action="<c:url value="/order"/>" method="POST">
-        User id <label>
-        <input type="text" name="user_id" value="${cookie.get("userid").value}" readonly>
+    <form class="pure-form pure-form-stacked pure-u-2-5" action="<c:url value="/tour"/>" method="POST">
+        Tout name <label>
+        <input type="text" name="tour_name">
     </label>
-        Agent id <label>
-        <input type="text" name="agent_id">
+        Tour description <label>
+        <input type="text" name="tour_description">
     </label>
-        Tour id <label>
-        <input type="text" name="tour_id">
-    </label> Cost <label>
-        <input type="text" name="cost">
+        Tour agency id <label>
+        <input type="text" name="tour_agency">
+    </label> Tour cost <label>
+        <input type="text" name="tour_cost">
     </label>
         <input type="submit" value="Submit"/>
     </form>
 </div>
 
 <div>
-    <a href="index.jsp">Home</a>
+    <a href="../../../resources/WEB-INF/index.jsp">Home</a>
 </div>
-
 
 </body>
 </html>

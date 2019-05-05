@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'war'
     id "org.liquibase.gradle" version "2.0.1"
-    id "com.bmuschko.cargo" version "2.6"
+    id "com.bmuschko.tomcat" version "2.5"
+
 }
 
 group 'com.alex'
@@ -18,7 +19,14 @@ repositories {
 
 dependencies {
 
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    compile 'org.hibernate:hibernate-core:5.4.2.Final'
+    compile 'org.hibernate:hibernate-c3p0:5.4.2.Final'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.0.RELEASE'
+    compile group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.0.RELEASE'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
 
@@ -43,34 +51,6 @@ liquibase {
         }
     }
 }
-cargo {
-    containerId = 'tomcat9x'
-    port = 9000
 
-    local {
-        homeDir = file('/usr/local/Cellar/tomcat/9.0.16/libexec')
-        logLevel = 'low'
-        containerProperties {
-            property 'cargo.tomcat.ajp.port', 9099
-        }
-        rmiPort = 9001
-    }
-    deployable {
-        file = file('/Users/andrii/IdeaProjects/laba/build/exploded')
-//        file = file('/Users/andrii/IdeaProjects/laba/build/libs/laba-1.0-SNAPSHOT.war')
-
-        context = "laba"
-    }
-}
-task explodedWar(type: Sync) {
-    into "${buildDir}/exploded"
-    with war
-}
-
-cargoRunLocal.dependsOn assemble
-cargoRunLocal.dependsOn update
-cargoRunLocal.dependsOn explodedWar
-
-war.dependsOn update
 
 

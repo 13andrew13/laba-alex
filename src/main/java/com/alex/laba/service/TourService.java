@@ -1,10 +1,13 @@
 package com.alex.laba.service;
 
-import com.alex.laba.dao.TourDAO;
+import com.alex.laba.dao.hibernate.TourDAO;
 import com.alex.laba.data.Tour;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
+@Transactional
 public class TourService {
     private TourDAO dao;
 

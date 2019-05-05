@@ -1,10 +1,13 @@
 package com.alex.laba.service;
 
-import com.alex.laba.dao.AgentDAO;
+import com.alex.laba.dao.hibernate.AgentDAO;
 import com.alex.laba.data.Agent;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
+@Transactional
 public class AgentService {
     private final AgentDAO agentDAO;
 
