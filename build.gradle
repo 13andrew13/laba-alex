@@ -39,6 +39,11 @@ dependencies {
 
 }
 
+task buildWar{
+    dependsOn war
+    
+}
+
 
 liquibase {
     activities {
