@@ -61,7 +61,7 @@
 </div>
 
 <div>
-    <a href="../../../resources/WEB-INF/index.jsp">Home</a>
+    <a href="/index">Home</a>
 </div>
 
 </body>

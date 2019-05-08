@@ -51,7 +51,7 @@
 </div>
 
 <div>
-    <a href="index.jsp">Home</a>
+    <a href="/index">Home</a>
 </div>
 
 </body>

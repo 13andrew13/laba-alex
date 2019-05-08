@@ -9,9 +9,9 @@ public class Agent implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "agency_id")
+    @Column(name = Columns.AGENCY_ID)
     private Long agencyId;
-    @Column(name = "agency_name")
+    @Column(name = Columns.NAME)
     private String agentName;
 
     public Long getId() {
