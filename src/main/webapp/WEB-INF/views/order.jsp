@@ -60,6 +60,12 @@
 </div>
 
 <div>
+    <label name="${errorMessage}">
+        ${errorMessage}
+    </label>
+</div>
+
+<div>
     <a href="/index">Home</a>
 </div>
 

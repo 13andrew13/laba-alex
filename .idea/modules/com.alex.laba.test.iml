@@ -54,5 +54,5 @@
     <orderEntry type="library" name="Gradle: com.sun.xml.fastinfoset:FastInfoset:1.2.15" level="project" />
     <orderEntry type="library" name="Gradle: com.mchange:mchange-commons-java:0.2.15" level="project" />
   </component>
-  <component name="TestModuleProperties" production-module="com.alex.laba.main" />
+  <component name="TestModuleProperties" production-module="laba.main" />
 </module>

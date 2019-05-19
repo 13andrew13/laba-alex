@@ -1,6 +1,7 @@
 package com.alex.laba.web.controller;
 
 import com.alex.laba.service.TourService;
+import com.alex.laba.web.ValidationUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,12 +31,24 @@ public class TourController {
             ModelAndView modelAndView,
             @RequestParam(name = "tour_description") String description,
             @RequestParam(name = "tour_name") String tourName,
-            @RequestParam(name = "tour_agency") String agencyID,
-            @RequestParam(name = "tour_cost") String cost
+            @RequestParam(name = "tour_agency") String agencyID
     ) {
-        service.createTour(description, tourName, Long.parseLong(agencyID), Long.parseLong(cost));
+        if (!ValidationUtils.validateInt(agencyID)) {
+            setError(request, "Agency id should contain only digits!");
+            return modelAndView;
+        }
+        try {
+            service.createTour(description, tourName, Long.parseLong(agencyID));
+        } catch (IllegalArgumentException exception) {
+            setError(request, exception.getMessage());
+            return modelAndView;
+        }
         request.setAttribute("tours", service.findAll());
-        modelAndView.setViewName("tour");
         return modelAndView;
+    }
+
+    private void setError(HttpServletRequest request, String message) {
+        request.setAttribute("tours", service.findAll());
+        request.setAttribute("errorMessage", message);
     }
 }

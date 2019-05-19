@@ -53,11 +53,15 @@
     </label>
         Tour agency id <label>
         <input type="text" name="tour_agency">
-    </label> Tour cost <label>
-        <input type="text" name="tour_cost">
     </label>
         <input type="submit" value="Submit"/>
     </form>
+</div>
+
+<div>
+    <label name="${errorMessage}">
+        ${errorMessage}
+    </label>
 </div>
 
 <div>

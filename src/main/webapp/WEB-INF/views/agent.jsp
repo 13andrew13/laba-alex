@@ -32,7 +32,6 @@
                 <td>${user.getId()}</td>
                 <td>${user.getAgentName()}</td>
                 <td>${user.getAgencyId()}</td>
-
             </tr>
         </c:forEach>
         </tbody>
@@ -48,6 +47,12 @@
     </label>
         <input type="submit" value="Submit"/>
     </form>
+</div>
+
+<div>
+    <label name="${errorMessage}">
+        ${errorMessage}
+    </label>
 </div>
 
 <div>

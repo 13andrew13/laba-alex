@@ -1,6 +1,8 @@
 package com.alex.laba.web.controller;
 
 import com.alex.laba.service.AgentService;
+import com.alex.laba.web.ValidationUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +33,22 @@ public class AgentController {
             @RequestParam(name = "agent_name") String agentName,
             @RequestParam(name = "agency_id") String agencyID
     ) {
-        service.createAgent(agentName, Long.parseLong(agencyID));
+        if (!ValidationUtils.validateInt(agencyID)) {
+            setError(request, "Agency id should contain only digits!");
+            return modelAndView;
+        }
+        try {
+            service.createAgent(agentName, Long.parseLong(agencyID));
+        } catch (IllegalArgumentException exception) {
+            setError(request, exception.getMessage());
+            return modelAndView;
+        }
         request.setAttribute("agents", service.findAllAgents());
-        modelAndView.setViewName("agent");
         return modelAndView;
+    }
+
+    private void setError(HttpServletRequest request, String message) {
+        request.setAttribute("agents", service.findAllAgents());
+        request.setAttribute("errorMessage", message);
     }
 }

@@ -1,5 +1,6 @@
 package com.alex.laba.service;
 
+import com.alex.laba.dao.hibernate.AgencyDAO;
 import com.alex.laba.dao.hibernate.AgentDAO;
 import com.alex.laba.data.Agent;
 import org.springframework.stereotype.Service;
@@ -10,12 +11,19 @@ import java.util.List;
 @Transactional
 public class AgentService {
     private final AgentDAO agentDAO;
+    private final AgencyDAO agencyDAO;
 
-    public AgentService(AgentDAO agentDAO) {
+    public AgentService(AgentDAO agentDAO, AgencyDAO agencyDAO) {
         this.agentDAO = agentDAO;
+        this.agencyDAO = agencyDAO;
     }
 
-    public Agent createAgent(String name, Long agencyId) {
+    public Agent createAgent(String name, Long agencyId) throws IllegalArgumentException {
+
+        if (!agencyDAO.findById(agencyId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find agency with such id");
+        }
+
         Agent agent = new Agent();
 
         agent.setAgencyId(agencyId);

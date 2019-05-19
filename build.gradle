@@ -14,7 +14,6 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     jcenter()
-
 }
 
 dependencies {
@@ -49,7 +48,7 @@ liquibase {
     activities {
         main {
             changeLogFile "/Users/ANDaleksei/Desktop/_3rd_course/OOP/laba-alex/src/main/resources/db/changelog.xml"
-            url 'jdbc:mysql://localhost/mydb'
+            url 'jdbc:mysql://localhost/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
             driver 'com.mysql.jdbc.Driver'
             username 'laba_user'
             password 'laba_password'
