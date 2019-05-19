@@ -20,10 +20,7 @@ public class TourService {
 
     public void createTour(String description, String name, Long agencyId) throws IllegalArgumentException {
 
-        if (!agencyDAO.findById(agencyId).isPresent()) {
-            throw new IllegalArgumentException("Cann't find agency with such id");
-        }
-
+        validateInputs(agencyId);
         Tour tour = new Tour();
         tour.setDescription(description);
         tour.setAgency(agencyId);
@@ -33,5 +30,11 @@ public class TourService {
 
     public List<Tour> findAll() {
         return dao.findAll();
+    }
+
+    private void validateInputs(Long agencyId) throws IllegalArgumentException {
+        if (!agencyDAO.findById(agencyId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find agency with such id");
+        }
     }
 }

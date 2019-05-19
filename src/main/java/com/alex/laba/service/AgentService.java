@@ -19,13 +19,8 @@ public class AgentService {
     }
 
     public Agent createAgent(String name, Long agencyId) throws IllegalArgumentException {
-
-        if (!agencyDAO.findById(agencyId).isPresent()) {
-            throw new IllegalArgumentException("Cann't find agency with such id");
-        }
-
+        validateInputs(agencyId);
         Agent agent = new Agent();
-
         agent.setAgencyId(agencyId);
         agent.setAgentName(name);
         agentDAO.save(agent);
@@ -34,5 +29,11 @@ public class AgentService {
 
     public List<Agent> findAllAgents() {
         return agentDAO.findAll();
+    }
+
+    private void validateInputs(Long agencyId) throws IllegalArgumentException {
+        if (!agencyDAO.findById(agencyId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find agency with such id");
+        }
     }
 }

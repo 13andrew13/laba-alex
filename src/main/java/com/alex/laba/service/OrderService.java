@@ -27,14 +27,7 @@ public class OrderService {
 
     public void createOrder(Long userId, Long agentId, Long tourId, Long cost) {
 
-        if (!userDAO.findById(userId).isPresent()) {
-            throw new IllegalArgumentException("Cann't find user with such id");
-        } else if (!agentDAO.findById(agentId).isPresent()) {
-            throw new IllegalArgumentException("Cann't find agent with such id");
-        } else if (!tourDAO.findById(tourId).isPresent()) {
-            throw new IllegalArgumentException("Cann't find tour with such id");
-        }
-
+        validateInputs(userId, agentId, tourId);
         Order order = new Order();
         order.setCost(cost);
         order.setUserId(userId);
@@ -45,5 +38,15 @@ public class OrderService {
 
     public List<Order> findAll() {
         return dao.findAll();
+    }
+
+    private void validateInputs(Long userId, Long agentId, Long tourId) throws IllegalArgumentException {
+        if (!userDAO.findById(userId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find user with such id");
+        } else if (!agentDAO.findById(agentId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find agent with such id");
+        } else if (!tourDAO.findById(tourId).isPresent()) {
+            throw new IllegalArgumentException("Cann't find tour with such id");
+        }
     }
 }

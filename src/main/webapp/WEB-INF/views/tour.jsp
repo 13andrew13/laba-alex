@@ -36,7 +36,6 @@
                 <td>${tour.getName()}</td>
                 <td>${tour.getDescription()}</td>
                 <td>${tour.getAgency()}</td>
-                <td>${tour.getCost()}</td>
 
             </tr>
         </c:forEach>
